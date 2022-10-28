@@ -1,4 +1,4 @@
-# Dehydrate and rehydrate model
+# Dehydrate and Rehydrate ckpt model
 
 A way to "dehydrate" a dreambooth model down to less than 1GB and "rehydrate" it back to it's original self (same hash). This technically allow to save half the storage space at the cost of requiring rehydration. This could be dynamically implemented in txt2img or img2img given the right hydration code support.
 
