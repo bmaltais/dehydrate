@@ -5,7 +5,7 @@ A way to "dehydrate" a dreambooth model down to less than 1GB and "rehydrate" it
 This is how it goes.
 
 1. Use the ckpt_subtract.py script to subtract the original model from the DB model, leaving behind only the difference between the two.
-2. Compress the resulting difference model to 1GB or less
+2. Compress the resulting difference model using tar, gzip, etc to roughly 1GB or less
 3. To rehydrate the model simply reverse the process. Add the diff back on top of the original sd15 model with ckpt_add.py.
 
 Dehydrate:
