@@ -15,3 +15,7 @@ Dehydrate:
 Hydrate:
 
 `python .\ckpt_add.py .\diff.ckpt D:\models\v1-5-pruned.ckpt --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
+
+or to restore with less "presence":
+
+`python .\ckpt_add.py .\diff.ckpt D:\models\v1-5-pruned.ckpt --str -0.01 --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
