@@ -50,7 +50,7 @@ Will merge two models at a specified alpha ratio
 
 ### ckpt_unmerge.py:
 
-Will unmerge a merged model be feeding it one of the two original model. It will extract the residual one. Usefull if you download a merged model but you are missing one of the two that was used to merge. If you have one of them it will give you back the other model in return.
+Will unmerge a merged model (A) at a specified alpha ratio by feeding it one of the two original model (B) that was originally merged with (A - B = C). It will extract the residual one. Usefull if you download a merged model but you are missing one of the two that was used to merge. If you have one of them it will give you back the other model in return.
 
 ### uncompress.py:
 
