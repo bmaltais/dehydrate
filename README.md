@@ -24,10 +24,18 @@ Dehydrate:
 
 `python .\ckpt_subtract.py D:\models\sks_man-1e-6-3000-sd15.ckpt D:\models\v1-5-pruned.ckpt --output dehydrated`
 
-Hydrate:
+Dehydrate with no compression:
+
+`python .\ckpt_subtract.py D:\models\sks_man-1e-6-3000-sd15.ckpt D:\models\v1-5-pruned.ckpt --output dehydrated --nocompress`
+
+Hydrate compressed model:
 
 `python .\ckpt_add.py .\dehydrated.pbz2 D:\models\v1-5-pruned.ckpt --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
 
-or to restore with less "presence":
+Hydrate uncompressed model:
+
+`python .\ckpt_add.py .\dehydrated D:\models\v1-5-pruned.ckpt --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
+
+Hydrate with less "presence":
 
 `python .\ckpt_add.py .\dehydrated.pbz2 D:\models\v1-5-pruned.ckpt --str -0.01 --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
