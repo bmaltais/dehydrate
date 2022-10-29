@@ -31,15 +31,18 @@ else:
 print("Loading base model...")
 model_base = torch.load(args.model_base)
 theta_base = model_base["state_dict"]
-alpha = args.str
+str = args.str
 
 output_file = f'{args.output}'
 
 print("Hydrating model...")
 for key in tqdm(theta_dehydrated.keys(), desc="Stage 1/2: merge common keys"):
     if "model" in key and key in theta_base:
-        theta_dehydrated[key] = theta_dehydrated[key] * (1 + alpha) + theta_base[key] * (1 - alpha)
-        #theta_dehydrated[key] = theta_dehydrated[key].clip_by_value(theta_dehydrated[key], clip_value_min=-1., clip_value_max=1.)
+        theta_dehydrated[key] = theta_dehydrated[key] * (1 + str) + theta_base[key] * (1 - str)
+        # if str > 0.:
+        #     theta_dehydrated[key] = torch.where(theta_dehydrated[key] > 1., 1., theta_dehydrated[key])
+        # if str < 0.:
+        #     theta_dehydrated[key] = torch.where(theta_dehydrated[key] < -1., -1., theta_dehydrated[key])
 
 for key in tqdm(theta_base.keys(), desc="Stage 2/2: add missing keys"):
     if "model" in key and key not in theta_dehydrated:
