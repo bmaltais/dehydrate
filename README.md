@@ -39,3 +39,13 @@ Hydrate uncompressed model:
 Hydrate with less "presence":
 
 `python .\ckpt_add.py .\dehydrated.pbz2 D:\models\v1-5-pruned.ckpt --str -0.01 --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
+
+## Other tools
+
+There are three extra tools provided:
+
+ckpt_merge.py: Will merge two models at a specified alpha ratio
+
+ckpt_unmerge.py: Will unmerge a merged model be feeding it one of the two original model. It will extract the residual one. Usefull if you download a merged model but you are missing one of the two that was used to merge. If you have one of them it will give you back the other model in return.
+
+uncompress.py: Uncompress a dehydrated model. Can greatly speed up rehydration by no requiring the lenghty uncompression phase.
