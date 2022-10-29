@@ -5,6 +5,7 @@ from tqdm import tqdm
 import bz2
 import pickle
 import _pickle as cPickle
+import pathlib
 
 parser = argparse.ArgumentParser(description="Merge two models")
 parser.add_argument("model_0", type=str, help="Path to dehydrated model")
@@ -19,9 +20,14 @@ def decompress_pickle(file):
     data = cPickle.load(data)
     return data
 
-print("Loading and decompressing dehydrated model...")
-theta_0 = decompress_pickle(args.model_0) # torch.load(args.model_0)
-# model_0 = decompress_pickle(args.model_0) # torch.load(args.model_0)
+print(pathlib.Path(args.model_0).suffix)
+if pathlib.Path(args.model_0).suffix == ".pbz2":
+    print("Loading and decompressing dehydrated model...")
+    theta_0 = decompress_pickle(args.model_0)  # torch.load(args.model_0)
+else:
+    print("Loading dehydrated model...")
+    model_0 = torch.load(args.model_0)
+    theta_0 = model_0["state_dict"]
 print("Loading base model...")
 model_1 = torch.load(args.model_1)
 theta_1 = model_1["state_dict"]

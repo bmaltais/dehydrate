@@ -8,6 +8,18 @@ This is how it goes.
 2. Compress the resulting model using tar, gzip, etc to roughly 1GB or less
 3. To rehydrate the model simply reverse the process. Add the diff back on top of the original sd15 model (or actually any other models of your choice, can be a different one) with ckpt_add.py.
 
+## Requirements
+
+```
+python -m venv venv
+.\venv\Scripts\activate
+pip install torch
+pip install tdqm
+pip install numpy
+```
+
+## Example
+
 Dehydrate:
 
 `python .\ckpt_subtract.py D:\models\sks_man-1e-6-3000-sd15.ckpt D:\models\v1-5-pruned.ckpt --output dehydrated`
