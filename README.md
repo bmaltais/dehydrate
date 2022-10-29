@@ -10,12 +10,12 @@ This is how it goes.
 
 Dehydrate:
 
-`python .\ckpt_subtract.py D:\models\sks_man-1e-6-3000-sd15.ckpt D:\models\v1-5-pruned.ckpt --output diff.ckpt`
+`python .\ckpt_subtract.py D:\models\sks_man-1e-6-3000-sd15.ckpt D:\models\v1-5-pruned.ckpt --output dehydrated`
 
 Hydrate:
 
-`python .\ckpt_add.py .\diff.ckpt D:\models\v1-5-pruned.ckpt --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
+`python .\ckpt_add.py .\dehydrated.pbz2 D:\models\v1-5-pruned.ckpt --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
 
 or to restore with less "presence":
 
-`python .\ckpt_add.py .\diff.ckpt D:\models\v1-5-pruned.ckpt --str -0.01 --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
+`python .\ckpt_add.py .\dehydrated.pbz2 D:\models\v1-5-pruned.ckpt --str -0.01 --output D:\models\sks_man-1e-6-3000-sd15.ckpt`
