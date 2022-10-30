@@ -36,7 +36,6 @@ for key in tqdm(theta_dreambooth.keys(), desc="Subtracting keys"):
         if not torch.equal(theta_dreambooth[key], theta_base[key]):
             theta_diff.update({key: (theta_dreambooth[key] - theta_base[key])})
             if args.loss > 0.:
-                print("t")
                 # All values near 0 + loss and 0 - loss will be set to 0
                 theta_diff[key] = torch.where(theta_diff[key] > args.loss, theta_diff[key], (torch.where(theta_diff[key] < -args.loss, theta_diff[key], 0.)))
 
