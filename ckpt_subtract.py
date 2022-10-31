@@ -36,8 +36,11 @@ for key in tqdm(theta_dreambooth.keys(), desc="Subtracting keys"):
         if not torch.equal(theta_dreambooth[key], theta_base[key]):
             theta_diff.update({key: (theta_dreambooth[key] - theta_base[key])})
             if args.loss > 0.:
+                # theta_max = torch.max(theta_diff[key]) * args.loss
+                # theta_min = torch.min(theta_diff[key]) * args.loss
                 # All values near 0 + loss and 0 - loss will be set to 0
                 theta_diff[key] = torch.where(theta_diff[key] > args.loss, theta_diff[key], (torch.where(theta_diff[key] < -args.loss, theta_diff[key], 0.)))
+                # theta_diff[key] = torch.where(theta_diff[key] > theta_max, theta_diff[key], (torch.where(theta_diff[key] < theta_min, theta_diff[key], 0.)))
 
 if args.nocompress:
     print("Saving uncompressed dehydrated model...")
